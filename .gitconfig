@@ -1,0 +1,33 @@
+[user]
+    email = brad.moody@outlook.com
+    name = Brad Moody
+[core]
+    editor = vim
+	autocrlf = false
+[push]
+    #default = simple
+    default = current
+[alias]
+    bigshow = show -U999999
+    stat = status
+    up = pull --rebase --prune
+    glog  = log --graph --abbrev-commit --decorate --all --source \
+                --format=format:'%w(0,0,2)%C(cyan)%H%Creset%C(auto)%d%Creset%n%n%C(yellow)%cD%Creset %C(green)(%cr)%Creset%n%C(dim white)%an <%ae>%Creset%n%s%n%n%-b%n'
+    glogc = log --graph --abbrev-commit --decorate --all --source \
+                --format=format:'%w(0,0,2)%H%d%n%n%cD (%cr)%n%an <%ae>%nParent commit: %P%n%n%s%n%n%-b%n'
+    refresh = commit -a --amend -C HEAD
+    ref     = commit -a --amend -C HEAD
+    discard = reset --hard HEAD
+
+    import = !git-import
+
+    #bdiff = !git diff `git merge-base master HEAD` HEAD
+    #complete = !sh -c '_GB=$(git symbolic-ref --short HEAD) && git checkout master && git merge $_GB && git push && git push origin --delete $_GB && git branch -d $_GB'
+    #mup = !sh -c '_GB=$(git symbolic-ref --short HEAD) && git checkout master && git up && git checkout $_GB'
+
+# Notes
+# - During rebase use git checkout --theirs [path] to use the files being rebased
+# - Delete branch from upstream: git push --delete origin <branch-name>
+# - Sync branches with origin: git fetch --all --prune
+# - Update branch without checkout: git fetch origin foo:foo
+#       where foo is the branch name
